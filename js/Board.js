@@ -11,14 +11,18 @@ document.querySelector('#board .create-column').addEventListener('click', functi
     var name = prompt('Enter a column name');
     var data = new FormData();
     data.append('name', name);
-    fetch(baseUrl + '/column', {method: 'POST', headers: myHeaders, body: data,})
-    .then(function(resp){
-        return resp.json();
-    })
-    .then(function(resp){
-        var column = new Column(resp.id, name);
-        board.addColumn(column);
-    });
+    if(name !== '' && name !== null) {
+        fetch(baseUrl + '/column', {method: 'POST', headers: myHeaders, body: data,})
+        .then(function(resp){
+            return resp.json();
+        })
+        .then(function(resp){
+            var column = new Column(resp.id, name);
+            board.addColumn(column);
+        });
+    } else if (name === '') {
+        alert('You have to write something!');
+    }
 });
 
 function initSortable(id) {
