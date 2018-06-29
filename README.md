@@ -4,7 +4,7 @@ I prepared my kanban board in vanilla JS.
 
 ## Task-12.7
 
-In this task I created my advanced kanban board. J used AJAX and API .
+In this task I created my advanced kanban board. I used AJAX and API .
  
 ## SOURCE 
 While creating the project I used: 
