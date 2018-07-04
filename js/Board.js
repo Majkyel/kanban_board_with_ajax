@@ -14,11 +14,7 @@ document.querySelector('#board .create-column').addEventListener('click', functi
     if (!name) {
         return;
     };
-    fetch(baseUrl + '/column', {
-            method: 'POST',
-            headers: myHeaders,
-            body: data,
-        })
+    fetch(baseUrl + '/column', {method: 'POST', headers: myHeaders, body: data,})
         .then(function (resp) {
             return resp.json();
         })
