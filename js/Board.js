@@ -2,7 +2,7 @@ var board = {
     name: 'Kanban board',
     addColumn: function (column) {
         this.element.appendChild(column.element);
-        initSortable(column.id); 
+        initSortable(column.id);
     },
     element: document.querySelector('#board .column-container')
 };
@@ -11,18 +11,21 @@ document.querySelector('#board .create-column').addEventListener('click', functi
     var name = prompt('Enter a column name');
     var data = new FormData();
     data.append('name', name);
-    if (name) {
-        fetch(baseUrl + '/column', {method: 'POST', headers: myHeaders, body: data,})
-        .then(function(resp){
+    if (!name) {
+        return;
+    };
+    fetch(baseUrl + '/column', {
+            method: 'POST',
+            headers: myHeaders,
+            body: data,
+        })
+        .then(function (resp) {
             return resp.json();
         })
-        .then(function(resp){
+        .then(function (resp) {
             var column = new Column(resp.id, name);
             board.addColumn(column);
         });
-    } else if (name === '') {
-        alert('You have to write something!');
-    }
 });
 
 function initSortable(id) {
